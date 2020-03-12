@@ -1,0 +1,41 @@
+app:
+  name: Investree-Kafka
+
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: group_id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+  messages:
+    basename: message/messages
+
+  jpa:
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      jdbc:
+        lob:
+        non_contextual_creation: true
+
+  datasource:
+    platform: mysql
+    url: jdbc:mariadb://127.0.0.1/db_name
+    username: root
+    password: root
+    hikari:
+      minimumIdle: 1
+      maximumPoolSize: 2
+
+server:
+  port: 8096
+
+language: ID
+
